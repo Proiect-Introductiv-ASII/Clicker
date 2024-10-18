@@ -23,7 +23,7 @@ const Game = () => {
   }
 
   const handleUpgradeAutoClick = () => {
-    if (points >= 50) { // Spend 50 points for an upgrade
+    if (points >= 50) { // Spend 50 points for an upgrad
       setPoints(points - 50);
       setPointsPerSecond(pointsPerSecond + 1); // Increase points per second
     }
