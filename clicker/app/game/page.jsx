@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Navbar from '../../components/Navbar';
 
 const Game = () => {
   const [points, setPoints] = useState(0);
@@ -31,6 +32,7 @@ const Game = () => {
   
   return (
     <div>
+      <Navbar />
       <h1>Your Points: {points}</h1>
       <p></p>
       <button onClick={handleClick}>Click for {pointsPerClick} points</button>
