@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth";
 
 export default async function Login () {
   const session = await getServerSession(authOptions); 
-  if(session) redirect("/dashboard"); 
+  if(session) redirect("/game"); 
 
   return (
       <LoginForm /> 
