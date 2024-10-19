@@ -14,9 +14,7 @@ const RegisterForm = () => {
 
     async function handleSubmit (e) { 
         e.preventDefault(); 
-
-        console.log(credentials); 
- 
+        
         if(!credentials.name || !credentials.email || !credentials.password) { 
             setError("All fields are necessary"); 
             return; 
