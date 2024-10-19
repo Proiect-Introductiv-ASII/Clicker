@@ -1,4 +1,4 @@
-import UserInfo from "./_components/UserInfo"
+import UserInfo from "./_components/UserInfo"; 
 
 const Dashboard = () => {
   return (
