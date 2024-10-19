@@ -1,4 +1,6 @@
-import React from 'react'
+"use client"; 
+
+import { signOut } from 'next-auth/react';
 
 const UserInfo = () => {
   return (
@@ -11,7 +13,9 @@ const UserInfo = () => {
             Email: 
             <span> eg </span>
         </div>
-        <button> Log Out </button>
+        <button
+          onClick = { () => signOut() }
+        > Log Out </button>
     </div>
   )
 }
