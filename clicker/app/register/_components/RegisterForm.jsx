@@ -2,8 +2,10 @@
 
 import Link from "next/link"; 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
+    const router = useRouter(); 
     const [ credentials, setCredentials ] = useState({ 
         name: "",
         email: "",
@@ -14,13 +16,29 @@ const RegisterForm = () => {
 
     async function handleSubmit (e) { 
         e.preventDefault(); 
-        
+
         if(!credentials.name || !credentials.email || !credentials.password) { 
             setError("All fields are necessary"); 
             return; 
         }
 
         try { 
+            const userExistsResponse = await fetch("/api/user-exists", { 
+                method: "POST", 
+                mode: "cors", 
+                headers: { 
+                    "Content-Type": "application/json"
+                }, 
+                body: JSON.stringify({ email: credentials.email })
+            }); 
+
+            const { user } = await userExistsResponse.json(); 
+            console.log({ user }); 
+            if(user) { 
+                setError("User already exists."); 
+                return; 
+            }
+
             const response = await fetch("api/register", { 
                 method: "POST", 
                 headers: { 
@@ -31,10 +49,12 @@ const RegisterForm = () => {
 
             if(response.ok) { 
                 e.target.reset(); 
+                router.push("/login"); 
             } else { 
                 console.log("User registration failed"); 
             }
         } catch(err) { 
+            console.log(err); 
             console.log("Error during registration"); 
         }
     }
