@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 
+const PRICE_CONSTANT = 10; // TODO -> improve as time goes on
+
 const GameState = ({ currentUser }) => {
     const user = JSON.parse(currentUser); 
     const [points, setPoints] = useState(user?.points || 1);
@@ -35,11 +37,26 @@ const GameState = ({ currentUser }) => {
     }, [pointsPerSecond]);
     */
   
-    const handleUpgradeClick = () => {
-      if (points >= 10) { // Spend 10 points for an upgrade
-        setPoints(points - 10);
-        setPointsPerClick(pointsPerClick + 1); // Increase points per clicks
-      }
+    const handleUpgradeClick = async () => {
+        try { 
+            if (points >= PRICE_CONSTANT) { // Spend PRICE_CONSTANT points for an upgrade
+                setPoints(points - PRICE_CONSTANT);
+                setPointsPerClick(pointsPerClick + 1); // Increase points per clicks
+
+                await fetch("/api/private-game/update-clicker", { 
+                    method: "PATCH", 
+                    mode: "cors", 
+                    headers: { 
+                        "Content-Type": "application/json",  
+                    }, 
+                    body: JSON.stringify({ price: PRICE_CONSTANT })
+                }); 
+            } else { 
+                console.log("ERROR -> message error to appear on screen."); 
+            }
+        } catch(err) { 
+            console.log(err); 
+        }
     }
   
     const handleUpgradeAutoClick = () => {
