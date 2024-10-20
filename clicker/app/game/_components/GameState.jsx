@@ -103,14 +103,6 @@ const GameState = ({ currentUser }) => {
             console.log(err);   
         }
     };
-
-    const handleBoost = () => {
-        if (points >= 50) {
-          setPoints(points - 50);
-          setPointsBoost(pointsBoost + 1);
-          setPointsPerSecond(pointsPerSecond * 2);
-        }
-      }
     
   return (
     <>
@@ -126,7 +118,6 @@ const GameState = ({ currentUser }) => {
         <p></p>
         <button onClick={handleUpgradeAutoClick}>Upgrade Auto-Click (Cost: 50 Points)</button>
         <p></p>
-        <button onClick={handleBoost}>Upgrade Boost (Cost: { UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT } Points)</button>
         <p></p>
         <h1>Auto-points/sec: { pointsPerSecond }</h1>
     </>
