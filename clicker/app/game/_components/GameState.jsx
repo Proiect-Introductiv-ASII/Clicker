@@ -86,7 +86,7 @@ const GameState = ({ currentUser }) => {
   
     const handleUpgradeAutoClick = async () => {
         try { 
-            if (points >= UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT) { // Spend 50 points for an upgrad
+            if (points >= UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT) { 
                 setPoints(points - UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT);
                 setPointsPerSecond(pointsPerSecond + 1); // Increase points per second
 
