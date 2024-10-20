@@ -28,14 +28,27 @@ const GameState = ({ currentUser }) => {
         }
     }
   
-    /* 
-            useEffect(() => {
+    useEffect(() => {
+        const handleInscreasePointsPerSecond = async () => { 
+            try { 
+                const response = await fetch("/api/private-game/add-points-per-second", { 
+                    method: "PATCH", 
+                    mode: "cors", 
+                    headers: { 
+                        "Content-Type": "application/json"
+                    }
+                }); 
+
+                if(response.ok) setPoints((prevPoints) => prevPoints + pointsPerSecond);
+            } catch(err) { 
+                console.log(err); 
+            }
+        }
       const interval = setInterval(() => {
-        setPoints((prevPoints) => prevPoints + pointsPerSecond);
+        handleInscreasePointsPerSecond(); 
       }, 1000);
       return () => clearInterval(interval);
     }, [pointsPerSecond]);
-    */
   
     const handleUpgradeClick = async () => {
         try { 

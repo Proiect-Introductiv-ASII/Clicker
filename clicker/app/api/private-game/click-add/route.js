@@ -7,9 +7,7 @@ export const PATCH = async () => {
     try { 
         await connectToDB(); 
 
-        const currentUser = await getCurrentUser(); 
-        console.log("Current user in patch"); 
-        console.log(currentUser ); 
+        const currentUser = await getCurrentUser();  
         if(!currentUser?.email) return NextResponse.json({ message: "No current user is logged in" }, { status: 401 }); 
 
         const user = await User.findOne({ 
