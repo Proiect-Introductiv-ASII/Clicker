@@ -13,7 +13,21 @@ const UserSchema = new Schema({
         type: String, 
         required: [ true, "Email is required!" ]
     },
-    points: Number, 
+    points: { 
+        type: Number, 
+        required: true, 
+        default: 0, 
+    }, 
+    pointsPerClick: { 
+        type: Number, 
+        required: true,
+        default: 1, 
+    }, 
+    pointsPerSecond: { 
+        type: Number, 
+        required: true,
+        default: 1, 
+    }, 
 }, 
     { timestamps: true }
 ); 
