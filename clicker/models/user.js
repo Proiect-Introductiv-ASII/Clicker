@@ -28,6 +28,25 @@ const UserSchema = new Schema({
         required: true,
         default: 1, 
     }, 
+    testimonialID: { 
+        type: Schema.Types.ObjectId, 
+        required: false, 
+    }, 
+    hasTestimonial: { 
+        type: Boolean, 
+        required: true, 
+        default: false, 
+    },
+    upgradeClickCost: { 
+        type: Number, 
+        required: true, 
+        default: 10, 
+    }, 
+    upgradePointsPerSecondCost: { 
+        type: Number, 
+        required: true, 
+        default: 50, 
+    }
 }, 
     { timestamps: true }
 ); 

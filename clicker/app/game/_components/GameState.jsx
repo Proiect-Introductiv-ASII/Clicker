@@ -8,8 +8,8 @@ const UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT = 50;
 const GameState = ({ currentUser }) => {
     const user = JSON.parse(currentUser); 
     const [points, setPoints] = useState(user?.points);
-    const [pointsPerClick, setPointsPerClick] = useState(user.pointsPerClick);
-    const [pointsPerSecond, setPointsPerSecond] = useState(user.pointsPerSecond);
+    const [pointsPerClick, setPointsPerClick] = useState(user?.pointsPerClick);
+    const [pointsPerSecond, setPointsPerSecond] = useState(user?.pointsPerSecond);
     const [pointsBoost, setPointsBoost] = useState(0);
     const [upgradeClickcost, setUpgradeClickCost] = useState(10);
     const [floatPoints, setFloatPoints] = useState([]);
@@ -25,7 +25,7 @@ const GameState = ({ currentUser }) => {
             }); 
 
             if(response.ok) { 
-                setPoints(p => p + user.pointsPerClick); 
+                setPoints(p => p + user?.pointsPerClick); 
                 const newFloat = { id: Date.now(), value: '+ ' + pointsPerClick };
                 setFloatPoints([...floatPoints, newFloat]);
             
@@ -59,7 +59,7 @@ const GameState = ({ currentUser }) => {
         handleInscreasePointsPerSecond(); 
       }, 1000);
       return () => clearInterval(interval);
-    }, [user.pointsPerSecond]);
+    }, [user?.pointsPerSecond]);
   
     const handleUpgradeClick = async () => {
         try { 
