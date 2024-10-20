@@ -115,20 +115,20 @@ const GameState = ({ currentUser }) => {
   return (
     <>
       <Navbar />
-      <h1>Your Points: { points } </h1>
-      <p></p>
-      <button onClick={handleClick}>Click for { pointsPerClick } points</button>
-      {floatPoints.map((fp) => (
-        <span key={fp.id} className="floating-points">{fp.value}</span>
-      ))}
-      <p></p>
-      <button onClick={handleUpgradeClick}>Upgrade Click (Cost: {upgradeClickcost} Points)</button>
-      <p></p>
-      <button onClick={handleUpgradeAutoClick}>Upgrade Auto-Click (Cost: 50 Points)</button>
-      <p></p>
-      <button onClick={handleBoost}>Upgrade Boost (Cost: { UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT } Points)</button>
-      <p></p>
-      <h1>Auto-points/sec: { pointsPerSecond }</h1>
+        <h1>Your Points: { points } </h1>
+        <p></p>
+        <button onClick={handleClick}>Click for { pointsPerClick } points</button>
+        {floatPoints.map((fp) => (
+            <span key={fp.id} className="floating-points">{fp.value}</span>
+        ))}
+        <p></p>
+        <button onClick={handleUpgradeClick}>Upgrade Click (Cost: {upgradeClickcost} Points)</button>
+        <p></p>
+        <button onClick={handleUpgradeAutoClick}>Upgrade Auto-Click (Cost: 50 Points)</button>
+        <p></p>
+        <button onClick={handleBoost}>Upgrade Boost (Cost: { UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT } Points)</button>
+        <p></p>
+        <h1>Auto-points/sec: { pointsPerSecond }</h1>
     </>
   )
 }
