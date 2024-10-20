@@ -1,15 +1,18 @@
 "use client"; 
 
 import { useState, useEffect } from "react";
+import Navbar from "@/app/components/Navbar";
 
-const PRICE_CONSTANT = 10; // TODO -> improve as time goes on
 const UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT = 50; 
 
 const GameState = ({ currentUser }) => {
     const user = JSON.parse(currentUser); 
-    const [points, setPoints] = useState(user?.points || 1);
-    const [pointsPerClick, setPointsPerClick] = useState(user?.pointsPerClick);
-    const [pointsPerSecond, setPointsPerSecond] = useState(user?.pointsPerSecond);
+    const [points, setPoints] = useState(user?.points);
+    const [pointsPerClick, setPointsPerClick] = useState(user.pointsPerClick);
+    const [pointsPerSecond, setPointsPerSecond] = useState(user.pointsPerSecond);
+    const [pointsBoost, setPointsBoost] = useState(0);
+    const [upgradeClickcost, setUpgradeClickCost] = useState(10);
+    const [floatPoints, setFloatPoints] = useState([]);
   
     const handleClick = async () => { 
         try { 
@@ -22,7 +25,14 @@ const GameState = ({ currentUser }) => {
             }); 
 
             if(response.ok) { 
-                setPoints(p => p + pointsPerClick); 
+                setPoints(p => p + user.pointsPerClick); 
+                const newFloat = { id: Date.now(), value: '+ ' + pointsPerClick };
+                setFloatPoints([...floatPoints, newFloat]);
+            
+                // Remove floating point after animation
+                setTimeout(() => {
+                  setFloatPoints(floatPoints.filter((f) => f.id !== newFloat.id));
+                }, 1000);
             }
         } catch(err) { 
             console.log(err); 
@@ -40,7 +50,7 @@ const GameState = ({ currentUser }) => {
                     }
                 }); 
 
-                if(response.ok) setPoints((prevPoints) => prevPoints + pointsPerSecond);
+                if(response.ok) setPoints((prevPoints) => prevPoints + user?.pointsPerSecond);
             } catch(err) { 
                 console.log(err); 
             }
@@ -49,13 +59,14 @@ const GameState = ({ currentUser }) => {
         handleInscreasePointsPerSecond(); 
       }, 1000);
       return () => clearInterval(interval);
-    }, [pointsPerSecond]);
+    }, [user.pointsPerSecond]);
   
     const handleUpgradeClick = async () => {
         try { 
-            if (points >= PRICE_CONSTANT) { // Spend PRICE_CONSTANT points for an upgrade
-                setPoints(points - PRICE_CONSTANT);
-                setPointsPerClick(pointsPerClick + 1); // Increase points per clicks
+            if (points >= upgradeClickcost) { // Spend PRICE_CONSTANT points for an upgrade
+                setPoints(points - upgradeClickcost);
+                setPointsPerClick(p => p + 1); // Increase points per clicks
+                setUpgradeClickCost(Math.round(upgradeClickcost * 1.45));
 
                 await fetch("/api/private-game/update-clicker", { 
                     method: "PATCH", 
@@ -63,7 +74,7 @@ const GameState = ({ currentUser }) => {
                     headers: { 
                         "Content-Type": "application/json",  
                     }, 
-                    body: JSON.stringify({ price: PRICE_CONSTANT })
+                    body: JSON.stringify({ price: upgradeClickcost })
                 }); 
             } else { 
                 console.log("ERROR -> message error to appear on screen."); 
@@ -92,18 +103,32 @@ const GameState = ({ currentUser }) => {
             console.log(err);   
         }
     };
+
+    const handleBoost = () => {
+        if (points >= 50) {
+          setPoints(points - 50);
+          setPointsBoost(pointsBoost + 1);
+          setPointsPerSecond(pointsPerSecond * 2);
+        }
+      }
     
   return (
     <>
-      <h1>Your Points: {points}</h1>
+      <Navbar />
+      <h1>Your Points: { points } </h1>
       <p></p>
-      <button onClick={handleClick}>Click for {pointsPerClick} points</button>
+      <button onClick={handleClick}>Click for { pointsPerClick } points</button>
+      {floatPoints.map((fp) => (
+        <span key={fp.id} className="floating-points">{fp.value}</span>
+      ))}
       <p></p>
-      <button onClick={handleUpgradeClick}>Upgrade Click (Cost: 10 Points)</button>
+      <button onClick={handleUpgradeClick}>Upgrade Click (Cost: {upgradeClickcost} Points)</button>
       <p></p>
       <button onClick={handleUpgradeAutoClick}>Upgrade Auto-Click (Cost: 50 Points)</button>
       <p></p>
-      <h1>Auto-points/sec: {pointsPerSecond}</h1>
+      <button onClick={handleBoost}>Upgrade Boost (Cost: { UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT } Points)</button>
+      <p></p>
+      <h1>Auto-points/sec: { pointsPerSecond }</h1>
     </>
   )
 }
