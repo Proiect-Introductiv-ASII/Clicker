@@ -17,8 +17,6 @@ export const PATCH = async () => {
             pointsPerClick: 1
         }); 
 
-        console.log(user); 
-
         if(!user) return NextResponse.json({ message: "No current user was found" }, { status: 403 }); 
 
         const updatedUser = await User.findByIdAndUpdate(

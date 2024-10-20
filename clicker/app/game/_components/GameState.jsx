@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 
 const PRICE_CONSTANT = 10; // TODO -> improve as time goes on
+const UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT = 50; 
 
 const GameState = ({ currentUser }) => {
     const user = JSON.parse(currentUser); 
@@ -72,11 +73,24 @@ const GameState = ({ currentUser }) => {
         }
     }
   
-    const handleUpgradeAutoClick = () => {
-      if (points >= 50) { // Spend 50 points for an upgrad
-        setPoints(points - 50);
-        setPointsPerSecond(pointsPerSecond + 1); // Increase points per second
-      }
+    const handleUpgradeAutoClick = async () => {
+        try { 
+            if (points >= UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT) { // Spend 50 points for an upgrad
+                setPoints(points - UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT);
+                setPointsPerSecond(pointsPerSecond + 1); // Increase points per second
+
+                const response = await fetch("/api/private-game/update-points-per-second", { 
+                    method: "PATCH", 
+                    mode: "cors", 
+                    headers: { 
+                        "Content-Type": "application/json"
+                    }, 
+                    body: JSON.stringify({ price: UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT })
+                })
+            }
+        } catch(err) { 
+            console.log(err);   
+        }
     };
     
   return (

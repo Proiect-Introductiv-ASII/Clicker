@@ -14,8 +14,6 @@ const getCurrentUser = async () => {
             email: session?.user?.email
         }); 
 
-        console.log(user); 
-
         if(!user) { 
             console.log("No user was found by this email"); 
             return null; 
