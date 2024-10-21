@@ -410,3 +410,43 @@ h1 {
 .form-link:hover {
   text-decoration: underline;
 }
+
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  color: #ccc;
+}
+
+.home-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.link-button {
+  font-size: 1.5rem;
+  color: #00ff00;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 2px solid #00ff00;
+  border-radius: 8px;
+  margin: 10px 0;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  background-color: #000000;
+}
+
+.link-button:hover {
+  background-color: #00ff00;
+  color: #333;
+  transform: scale(1.1);
+}
+
+
+@media (max-width: 768px) {
+  .link-button {
+    font-size: 1.2rem;
+    padding: 8px 16px;
+  }
+}
