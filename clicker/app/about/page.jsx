@@ -2,8 +2,9 @@ import Navbar from "../components/Navbar";
 
 const About = () => {
   return (
-    <div className="about-container">
+    <div>
       <Navbar />
+    <div className="about-container">
       <div className="about-content">
         <section>
           <h1 className="heading">About ASCII/IT Clicker Game</h1>
@@ -15,7 +16,11 @@ const About = () => {
             text-based visuals.
           </p>
         </section>
+      </div>
+    </div>
 
+    <div className="about-container">
+      <div className="about-content">
         <section>
           <h2 className="subheading">How It Works</h2>
           <p>
@@ -25,7 +30,11 @@ const About = () => {
             progression, keeping the player engaged for hours.
           </p>
         </section>
+        </div>
+    </div>
 
+    <div className="about-container">
+      <div className="about-content">    
         <section>
           <h2 className="subheading">Technologies Behind the Game</h2>
           <p>
@@ -35,7 +44,11 @@ const About = () => {
             that can run smoothly on both desktop and mobile devices.
           </p>
         </section>
-
+        </div>
+    </div>
+    
+    <div className="about-container">
+      <div className="about-content">
         <section>
           <h2 className="subheading">What's Next</h2>
           <p>
@@ -44,7 +57,11 @@ const About = () => {
             most dedicated players.
           </p>
         </section>
-
+        </div>
+    </div>
+    
+    <div className="about-container">
+      <div className="about-content">
         <section>
           <h2 className="subheading">Credits & Contact</h2>
           <p>
@@ -55,7 +72,9 @@ const About = () => {
         </section>
       </div>
     </div>
+    </div>
   );
 };
 
 export default About;
+

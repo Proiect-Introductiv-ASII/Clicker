@@ -1,3 +1,5 @@
+/*Game*/
+
 button {
     background-color: hsl(0, 0%, 0%);
     color: #fff;
@@ -100,6 +102,8 @@ h1, h2, h3, p, span, div, a {
     100% { background-position: 0% 50%; }
 }
   
+/*Formularul de testimoniale*/
+
 .testimonial-form {
     max-width: 600px;
     margin: 2.5rem auto;
@@ -142,52 +146,88 @@ h1, h2, h3, p, span, div, a {
     color: #ff4444;
 }
 
+/* About Page Styling */
 .about-container {
-  padding: 20px;
+  padding: 30px;
+  padding-top: 30px;
   color: #ccc;
-  min-height: 100vh;
+  min-height: 100vh auto;
 }
 
 .about-content {
-  max-width: 900px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+  animation: fadeIn 1s ease-out;
 }
 
 .heading {
-  font-size: 2.5rem;
+  font-size: 2.7rem;
   color: #00ff00;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  text-shadow: 0 0 8px #00ff00; 
+  transition: transform 0.3s ease; 
+}
+
+.heading:hover {
+  transform: scale(1.1); 
 }
 
 .subheading {
-  font-size: 1.8rem;
+  font-size: 1.9rem;
+  text-align: center;
   color: #00ff00;
-  margin-top: 30px;
+  margin-top: 35px;
+  text-shadow: 0 0 6px #00ff00;
+  transition: transform 0.3s ease;
+}
+
+.subheading:hover {
+  transform: scale(1.05); 
 }
 
 p {
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-size: 1.15rem;
+  line-height: 1.8;
   color: #ccc;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  transition: color 0.3s ease;
+}
+
+p:hover {
+  color: #00ff00;
 }
 
 section {
-  margin-bottom: 40px;
+  margin-bottom: 45px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {
   .heading {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .subheading {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 }
+
+/*testiomonials partea de listing*/
 
 .testimonials-page {
     padding: 20px;
@@ -220,6 +260,8 @@ section {
     color: #bbb;
     margin-top: 10px;
   }
+
+/*Dashboard-ul*/
 
 .user-info-page {
     display: flex;
@@ -266,6 +308,8 @@ section {
   .logout-button:hover {
     background-color: #00cc00;
   }
+
+/*Pagina de login*/
 
 .login-form-page {
   display: flex;
@@ -344,6 +388,7 @@ section {
 .register-link:hover {
   text-decoration: underline;
 }
+/*Pagina de register*/
 
 .container {
   height: 100vh;
@@ -411,6 +456,7 @@ h1 {
   text-decoration: underline;
 }
 
+/* Pagina fara nimic*/
 .home-container {
   display: flex;
   justify-content: center;
