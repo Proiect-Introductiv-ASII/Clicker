@@ -264,6 +264,149 @@ section {
   }
   
   .logout-button:hover {
-    background-color: #00cc00; /* Darker green on hover */
+    background-color: #00cc00;
   }
-  
+
+.login-form-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding-left: 600px;
+  padding-right: 600px;
+}
+
+.login-form-container {
+  background-color: #333;
+  border-radius: 8px;
+  padding: 30px;
+  color: #00ff00;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #00ff00;
+  max-width: 400px auto;
+  width: 100%;
+  text-align: center;
+}
+
+.login-form-title {
+  color: #00ff00;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-input {
+  background-color: #2e2e2e;
+  color: #fff;
+  border: 1px solid #00ff00;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.login-input::placeholder {
+  color: #999;
+}
+
+.login-button {
+  background-color: #00ff00;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10px 0;
+}
+
+.login-button:hover {
+  background-color: #00cc00;
+}
+
+.error-message {
+  color: #ff0000;
+  margin-top: 10px;
+}
+
+.register-link {
+  color: #00ff00;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 600px;
+  padding-right: 600px;
+}
+
+.form-box {
+  background-color: #2b2b2b;
+  padding: 50px 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+  width: 320px auto;
+}
+
+h1 {
+  justify-content: center;
+  color: #00ff00;
+  margin-bottom: 25px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin: 12px 0 auto;
+  border-radius: 5px - auto;
+  border: 1px solid #555;
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #00ff00; /* Bright green */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #000;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+.submit-button:hover {
+  background-color: #00e600; /* Slightly darker green on hover */
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.form-link {
+  display: block;
+  margin-top: 25px; /* Adjusted margin for more balance */
+  color: #00ff00;
+  text-decoration: none;
+}
+
+.form-link:hover {
+  text-decoration: underline;
+}
