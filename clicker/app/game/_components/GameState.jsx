@@ -5,8 +5,10 @@ import calculateClickCost from "@/utils/calculateClickCost";
 import Navbar from "@/app/components/Navbar";
 import calculateClickSeconds from "@/utils/calculateClickSeconds";
 import { LEVEL_UP_COST } from "@/contants";
+import { useRouter } from "next/navigation";
 
 const GameState = ({ currentUser }) => {
+    const router = useRouter(); 
     const user = JSON.parse(currentUser); 
     const [points, setPoints] = useState(user?.points);
     const [pointsPerClick, setPointsPerClick] = useState(user?.pointsPerClick);
@@ -15,6 +17,8 @@ const GameState = ({ currentUser }) => {
     const [upgradePointsPerSecondCost, setUpgradePointsPerSecondCost] = useState(user?.upgradePointsPerSecondCost); 
     const [floatPoints, setFloatPoints] = useState([]);
     const [ level, setLevel ] = useState(user?.level); 
+
+    useEffect( () => { router.refresh() }, [])
   
     const handleClick = async () => { 
         try { 
