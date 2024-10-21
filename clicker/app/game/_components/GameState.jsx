@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import calculateClickCost from "@/utils/calculateClickCost";
 import Navbar from "@/app/components/Navbar";
 import calculateClickSeconds from "@/utils/calculateClickSeconds";
+import { LEVEL_UP_COST } from "@/contants";
 
 const GameState = ({ currentUser }) => {
     const user = JSON.parse(currentUser); 
@@ -13,6 +14,7 @@ const GameState = ({ currentUser }) => {
     const [upgradeClickCost, setUpgradeClickCost] = useState(user?.upgradeClickCost);
     const [upgradePointsPerSecondCost, setUpgradePointsPerSecondCost] = useState(user?.upgradePointsPerSecondCost); 
     const [floatPoints, setFloatPoints] = useState([]);
+    const [ level, setLevel ] = useState(user?.level); 
   
     const handleClick = async () => { 
         try { 
@@ -42,8 +44,8 @@ const GameState = ({ currentUser }) => {
     useEffect(() => {
         const handleInscreasePointsPerSecond = async () => { 
             try { 
-                if(user?.pointsPerSecond != 0) { 
-                    await fetch("/api/private-game/add-points-per-second", { 
+                if(user?.pointsPerSecond != 0 && points < LEVEL_UP_COST) { 
+                    const response = await fetch("/api/private-game/add-points-per-second", { 
                         method: "PATCH", 
                         mode: "cors", 
                         headers: { 
@@ -51,7 +53,7 @@ const GameState = ({ currentUser }) => {
                         }
                     }); 
 
-                    setPoints((prevPoints) => prevPoints + pointsPerSecond);
+                    if(response.status == 200) setPoints((prevPoints) => prevPoints + pointsPerSecond);
                 }
             } catch(err) { 
                 console.log(err); 
@@ -108,6 +110,25 @@ const GameState = ({ currentUser }) => {
             console.log(err);   
         }
     };
+
+    const handleLevelUp = async () =>{ 
+        try { 
+            const response = await fetch("/api/level-up", { 
+                method: "PATCH", 
+                mode: "cors", 
+                headers: { 
+                    "Content-Type": "application/json" 
+                }
+            }); 
+
+            if(response.ok) { 
+                setLevel(level + 1); 
+                setPoints(points - LEVEL_UP_COST); 
+            }
+        } catch(err) { 
+
+        }
+    }
     
   return (
     <>
@@ -123,11 +144,10 @@ const GameState = ({ currentUser }) => {
         <button onClick={handleUpgradeClick}>Upgrade Click (Cost: {upgradeClickCost} Points)</button>
         <p></p>
         <button onClick={handleUpgradeAutoClick}>Upgrade Auto-Click (Cost: { upgradePointsPerSecondCost } Points)</button>
-        <p></p>
-        <p></p>
-        <h1>Auto-points/sec: { pointsPerSecond }</h1>
-        <button onClick={handleUpgradeClick}>Upgrade Click (Cost: {upgradeClickcost} Points)</button>
-        <button onClick={handleUpgradeAutoClick}>Upgrade Auto-Click (Cost: 50 Points)</button>
+
+        <p> Level up cost: { LEVEL_UP_COST } </p>
+        <p> Your Level: { level } </p>
+        <button onClick = { handleLevelUp }> Level Up </button>
         </div>
     </>
   )
