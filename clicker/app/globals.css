@@ -112,6 +112,7 @@ h1, h2, h3, p, span, div, a {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     color: #fff;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .testimonial-form h2 {
@@ -232,6 +233,7 @@ section {
 .testimonials-page {
     padding: 20px;
     font-family: Arial, sans-serif;
+    animation: fadeIn 1s ease-out;
   }
   
   .testimonials-list {
@@ -268,6 +270,7 @@ section {
     justify-content: center;
     align-items: center;
     padding-top: 20px;
+    animation: fadeIn 0.5s ease-out;
   }
   
   .user-info-container {
@@ -318,6 +321,7 @@ section {
   height: 100vh;
   padding-left: 600px;
   padding-right: 600px;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .login-form-container {
@@ -388,6 +392,7 @@ section {
 .register-link:hover {
   text-decoration: underline;
 }
+
 /*Pagina de register*/
 
 .container {
@@ -397,6 +402,7 @@ section {
   align-items: center;
   padding-left: 600px;
   padding-right: 600px;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .form-box {
@@ -457,12 +463,14 @@ h1 {
 }
 
 /* Pagina fara nimic*/
+
 .home-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 90vh;
   color: #ccc;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .home-links {
