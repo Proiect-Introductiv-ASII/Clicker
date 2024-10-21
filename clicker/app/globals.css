@@ -112,3 +112,58 @@ h1, h2, h3, p, span, div, a {
     filter: brightness(1.2); /* Slight brightness change on hover */
 }
   
+.testimonial-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+.testimonial-form h2 {
+    margin-bottom: 1rem;
+    color: #00ff00;
+}
+
+.testimonial-form textarea, 
+.testimonial-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 1rem 0;
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+    background-color: #222;
+    color: #fff;
+}
+
+.testimonial-form button {
+    background-color: #00ff00;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.testimonial-form button:hover {
+    background-color: #005500;
+}
+
+.testimonial-form .error {
+    color: #ff4444;
+}
+
+.testimonial-item {
+    padding: 10px;
+    border-left: 4px solid green;
+    background-color: #333;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .testimonial-item p {
+    color: white;
+  }
+  

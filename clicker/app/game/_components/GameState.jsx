@@ -10,7 +10,6 @@ const GameState = ({ currentUser }) => {
     const [points, setPoints] = useState(user?.points);
     const [pointsPerClick, setPointsPerClick] = useState(user?.pointsPerClick);
     const [pointsPerSecond, setPointsPerSecond] = useState(user?.pointsPerSecond);
-    const [pointsBoost, setPointsBoost] = useState(0);
     const [upgradeClickcost, setUpgradeClickCost] = useState(10);
     const [floatPoints, setFloatPoints] = useState([]);
   
@@ -65,7 +64,7 @@ const GameState = ({ currentUser }) => {
         try { 
             if (points >= upgradeClickcost) { // Spend PRICE_CONSTANT points for an upgrade
                 setPoints(points - upgradeClickcost);
-                setPointsPerClick(p => p + 1); // Increase points per clicks
+                setPointsPerClick(pointsPerClick => pointsPerClick + 1); // Increase points per clicks
                 setUpgradeClickCost(Math.round(upgradeClickcost * 1.45));
 
                 await fetch("/api/private-game/update-clicker", { 
