@@ -1,5 +1,19 @@
 /*Game*/
 
+.game-container {
+  max-width: 600px ;
+  margin: 2.5rem auto;
+  padding: 2.5rem;
+  background-color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  animation: fadeIn 0.5s ease-out;
+  display: grid;
+  place-content: center;
+  
+}
+
 button {
     background-color: hsl(0, 0%, 0%);
     color: #fff;
@@ -9,7 +23,7 @@ button {
     transition: transform 0.2s ease, background-color 0.3s ease;
     border-radius: 5px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-    margin-left: 25px;
+    margin-top: 20px;
 }
 
 button:hover {
@@ -46,9 +60,10 @@ nav a:hover {
 
 .floating-points {
     position: absolute;
-    color: #000;
+    color: #ffffff;
     font-weight: bold;
     animation: float 1.2s ease-out forwards;
+    align-content: center;
 }
 
 @keyframes float {
@@ -92,8 +107,8 @@ body {
     color: #f0f0f0;
 }
 
-h1, h2, h3, p, span, div, a {
-    color: #f0f0f0;
+h2, h3, p, span, div, a {
+    color: #00ff00;
 }
 
 @keyframes backgroundMove {
@@ -268,9 +283,10 @@ section {
 .user-info-page {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items:flex-start;
     padding-top: 20px;
     animation: fadeIn 0.5s ease-out;
+    height: 100vh;
   }
   
   .user-info-container {

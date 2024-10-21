@@ -110,19 +110,16 @@ const GameState = ({ currentUser }) => {
   return (
     <>
       <Navbar />
-        <h1>Your Points: { points } </h1>
-        <p></p>
+      <div className="game-container">
+        <h1>Points: { points } </h1>
+        <h2>Auto-points/sec: { pointsPerSecond }</h2>
         <button onClick={handleClick}>Click for { pointsPerClick } points</button>
         {floatPoints.map((fp) => (
             <span key={fp.id} className="floating-points">{fp.value}</span>
         ))}
-        <p></p>
         <button onClick={handleUpgradeClick}>Upgrade Click (Cost: {upgradeClickcost} Points)</button>
-        <p></p>
         <button onClick={handleUpgradeAutoClick}>Upgrade Auto-Click (Cost: 50 Points)</button>
-        <p></p>
-        <p></p>
-        <h1>Auto-points/sec: { pointsPerSecond }</h1>
+        </div>
     </>
   )
 }
