@@ -3,15 +3,15 @@
 import { useState, useEffect } from "react";
 import calculateClickCost from "@/utils/calculateClickCost";
 import Navbar from "@/app/components/Navbar";
-
-const UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT = 50; 
+import calculateClickSeconds from "@/utils/calculateClickSeconds";
 
 const GameState = ({ currentUser }) => {
     const user = JSON.parse(currentUser); 
     const [points, setPoints] = useState(user?.points);
     const [pointsPerClick, setPointsPerClick] = useState(user?.pointsPerClick);
     const [pointsPerSecond, setPointsPerSecond] = useState(user?.pointsPerSecond);
-    const [upgradeClickcost, setUpgradeClickCost] = useState(user?.upgradeClickCost);
+    const [upgradeClickCost, setUpgradeClickCost] = useState(user?.upgradeClickCost);
+    const [upgradePointsPerSecondCost, setUpgradePointsPerSecondCost] = useState(user?.upgradePointsPerSecondCost); 
     const [floatPoints, setFloatPoints] = useState([]);
   
     const handleClick = async () => { 
@@ -25,7 +25,7 @@ const GameState = ({ currentUser }) => {
             }); 
 
             if(response.ok) { 
-                setPoints(p => p + user?.pointsPerClick); 
+                setPoints(p => p + pointsPerClick); 
                 const newFloat = { id: Date.now(), value: '+ ' + pointsPerClick };
                 setFloatPoints([...floatPoints, newFloat]);
             
@@ -43,15 +43,15 @@ const GameState = ({ currentUser }) => {
         const handleInscreasePointsPerSecond = async () => { 
             try { 
                 if(user?.pointsPerSecond != 0) { 
-                    const response = await fetch("/api/private-game/add-points-per-second", { 
+                    await fetch("/api/private-game/add-points-per-second", { 
                         method: "PATCH", 
                         mode: "cors", 
                         headers: { 
                             "Content-Type": "application/json"
                         }
                     }); 
-    
-                    if(response.ok) setPoints((prevPoints) => prevPoints + user?.pointsPerSecond);
+
+                    setPoints((prevPoints) => prevPoints + pointsPerSecond);
                 }
             } catch(err) { 
                 console.log(err); 
@@ -61,12 +61,12 @@ const GameState = ({ currentUser }) => {
         handleInscreasePointsPerSecond(); 
       }, 1000);
       return () => clearInterval(interval);
-    }, [user?.pointsPerSecond]);
+    }, [pointsPerSecond]);
   
     const handleUpgradeClick = async () => {
         try { 
-            if (points >= upgradeClickcost) { // Spend PRICE_CONSTANT points for an upgrade
-                setPoints(points - upgradeClickcost);
+            if (points >= upgradeClickCost) { // Spend PRICE_CONSTANT points for an upgrade
+                setPoints(points - upgradeClickCost);
                 setPointsPerClick(pointsPerClick => pointsPerClick + 1); // Increase points per clicks
 
                 const response = await fetch("/api/private-game/update-clicker", { 
@@ -75,10 +75,10 @@ const GameState = ({ currentUser }) => {
                     headers: { 
                         "Content-Type": "application/json",  
                     }, 
-                    body: JSON.stringify({ price: upgradeClickcost })
+                    body: JSON.stringify({ price: upgradeClickCost })
                 }); 
 
-                if(response.ok) setUpgradeClickCost(response.upgradeClickCost);
+                if(response.ok) setUpgradeClickCost(calculateClickCost(user?.clickLevel, upgradeClickCost));
             } else { 
                 console.log("ERROR -> message error to appear on screen."); 
             }
@@ -89,8 +89,8 @@ const GameState = ({ currentUser }) => {
   
     const handleUpgradeAutoClick = async () => {
         try { 
-            if (points >= UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT) { 
-                setPoints(points - UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT);
+            if (points >= user?.upgradePointsPerSecondCost) { 
+                setPoints(points - user?.upgradePointsPerSecondCost);
                 setPointsPerSecond(pointsPerSecond + 1); // Increase points per second
 
                 const response = await fetch("/api/private-game/update-points-per-second", { 
@@ -99,10 +99,12 @@ const GameState = ({ currentUser }) => {
                     headers: { 
                         "Content-Type": "application/json"
                     }, 
-                    body: JSON.stringify({ price: UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT })
-                })
+                    body: JSON.stringify({ price: user?.upgradePointsPerSecondCost })
+                }); 
+
+                if(response.ok) setUpgradePointsPerSecondCost(calculateClickSeconds(user?.secondsLevel, upgradePointsPerSecondCost)); 
             }
-        } catch(err) { 
+        } catch(err) {
             console.log(err);   
         }
     };
@@ -117,9 +119,9 @@ const GameState = ({ currentUser }) => {
             <span key={fp.id} className="floating-points">{fp.value}</span>
         ))}
         <p></p>
-        <button onClick={handleUpgradeClick}>Upgrade Click (Cost: {upgradeClickcost} Points)</button>
+        <button onClick={handleUpgradeClick}>Upgrade Click (Cost: {upgradeClickCost} Points)</button>
         <p></p>
-        <button onClick={handleUpgradeAutoClick}>Upgrade Auto-Click (Cost: 50 Points)</button>
+        <button onClick={handleUpgradeAutoClick}>Upgrade Auto-Click (Cost: { upgradePointsPerSecondCost } Points)</button>
         <p></p>
         <p></p>
         <h1>Auto-points/sec: { pointsPerSecond }</h1>
