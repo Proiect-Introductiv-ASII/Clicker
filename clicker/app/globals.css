@@ -511,6 +511,7 @@ h1 {
   padding: 20px;
   color: #ccc;
   min-height: 100vh;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .heading {
@@ -518,6 +519,7 @@ h1 {
   color: #00ff00;
   text-align: center;
   margin-bottom: 20px;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .leaderboard-table {
