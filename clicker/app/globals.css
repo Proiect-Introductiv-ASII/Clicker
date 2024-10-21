@@ -392,7 +392,7 @@ h1 {
 }
 
 .submit-button:hover {
-  background-color: #00e600; /* Slightly darker green on hover */
+  background-color: #00e600;
 }
 
 .error-message {
@@ -402,7 +402,7 @@ h1 {
 
 .form-link {
   display: block;
-  margin-top: 25px; /* Adjusted margin for more balance */
+  margin-top: 25px;
   color: #00ff00;
   text-decoration: none;
 }
