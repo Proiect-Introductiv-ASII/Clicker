@@ -220,4 +220,50 @@ section {
     color: #bbb;
     margin-top: 10px;
   }
+
+.user-info-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+  }
+  
+  .user-info-container {
+    background-color: #333;
+    border-radius: 8px;
+    padding: 20px;
+    color: #00ff00;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #00ff00;
+    max-width: 400px;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .user-info-item {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #fff;
+  }
+  
+  .user-info-value {
+    margin-left: 10px;
+    color: #00ff00; /* Highlight the user info */
+  }
+  
+  .logout-button {
+    background-color: #00ff00;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+    width: 90%;
+  }
+  
+  .logout-button:hover {
+    background-color: #00cc00; /* Darker green on hover */
+  }
   
