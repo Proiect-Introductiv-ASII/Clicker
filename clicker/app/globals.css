@@ -1,5 +1,19 @@
 /*Game*/
 
+.game-container {
+  max-width: 600px ;
+  margin: 2.5rem auto;
+  padding: 2.5rem;
+  background-color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  animation: fadeIn 0.5s ease-out;
+  display: grid;
+  place-content: center;
+  
+}
+
 button {
     background-color: hsl(0, 0%, 0%);
     color: #fff;
@@ -9,7 +23,7 @@ button {
     transition: transform 0.2s ease, background-color 0.3s ease;
     border-radius: 5px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-    margin-left: 25px;
+    margin-top: 20px;
 }
 
 button:hover {
@@ -46,9 +60,10 @@ nav a:hover {
 
 .floating-points {
     position: absolute;
-    color: #000;
+    color: #ffffff;
     font-weight: bold;
     animation: float 1.2s ease-out forwards;
+    align-content: center;
 }
 
 @keyframes float {
@@ -92,8 +107,8 @@ body {
     color: #f0f0f0;
 }
 
-h1, h2, h3, p, span, div, a {
-    color: #f0f0f0;
+h2, h3, p, span, div, a {
+    color: #00ff00;
 }
 
 @keyframes backgroundMove {
@@ -268,9 +283,10 @@ section {
 .user-info-page {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items:flex-start;
     padding-top: 20px;
     animation: fadeIn 0.5s ease-out;
+    height: 100vh;
   }
   
   .user-info-container {
@@ -503,4 +519,44 @@ h1 {
     font-size: 1.2rem;
     padding: 8px 16px;
   }
+}
+
+/*leaderboard*/
+ 
+.leaderboard-container {
+  padding: 20px;
+  color: #ccc;
+  min-height: 100vh;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.heading {
+  font-size: 2.5rem;
+  color: #00ff00;
+  text-align: center;
+  margin-bottom: 20px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.leaderboard-table {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.leaderboard-table th, .leaderboard-table td {
+  border: 1px solid #555;
+  padding: 10px;
+  text-align: left;
+  color: #ccc;
+}
+
+.leaderboard-table th {
+  background-color: #333;
+  color: #00ff00;
+}
+
+.leaderboard-table tr:nth-child(even) {
+  background-color: #222;
 }
