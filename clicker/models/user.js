@@ -26,7 +26,7 @@ const UserSchema = new Schema({
     pointsPerSecond: { 
         type: Number, 
         required: true,
-        default: 1, 
+        default: 0, 
     }, 
     testimonialID: { 
         type: Schema.Types.ObjectId, 
@@ -46,6 +46,21 @@ const UserSchema = new Schema({
         type: Number, 
         required: true, 
         default: 50, 
+    }, 
+    level: { 
+        type: Number, 
+        required: true, 
+        default: 0, 
+    },  
+    clickLevel: { 
+        type: Number, 
+        required: true, 
+        default: 1, 
+    },
+    secondsLevel: { 
+        type: Number, 
+        required: true, 
+        default: 1, 
     }
 }, 
     { timestamps: true }

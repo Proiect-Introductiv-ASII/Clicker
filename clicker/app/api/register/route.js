@@ -15,10 +15,13 @@ export async function POST (req) {
             password: hashedPassword, 
             points: 0,
             pointsPerClick: 1, 
-            pointsPerSecond: 1, 
+            pointsPerSecond: 0, 
             hasTestimonial: false, 
             upgradeClickCost: 10, 
             upgradePointsPerSecondCost: 50, 
+            level: 0, 
+            clickLevel: 1, 
+            secondsLevel: 1, 
         }); 
 
         console.log({ newUser }); 

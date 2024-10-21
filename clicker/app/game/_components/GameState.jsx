@@ -1,6 +1,7 @@
 "use client"; 
 
 import { useState, useEffect } from "react";
+import calculateClickCost from "@/utils/calculateClickCost";
 import Navbar from "@/app/components/Navbar";
 
 const UPGRADE_POINTS_PER_SECOND_PRICE_CONSTANT = 50; 
@@ -10,7 +11,7 @@ const GameState = ({ currentUser }) => {
     const [points, setPoints] = useState(user?.points);
     const [pointsPerClick, setPointsPerClick] = useState(user?.pointsPerClick);
     const [pointsPerSecond, setPointsPerSecond] = useState(user?.pointsPerSecond);
-    const [upgradeClickcost, setUpgradeClickCost] = useState(10);
+    const [upgradeClickcost, setUpgradeClickCost] = useState(user?.upgradeClickCost);
     const [floatPoints, setFloatPoints] = useState([]);
   
     const handleClick = async () => { 
@@ -41,15 +42,17 @@ const GameState = ({ currentUser }) => {
     useEffect(() => {
         const handleInscreasePointsPerSecond = async () => { 
             try { 
-                const response = await fetch("/api/private-game/add-points-per-second", { 
-                    method: "PATCH", 
-                    mode: "cors", 
-                    headers: { 
-                        "Content-Type": "application/json"
-                    }
-                }); 
-
-                if(response.ok) setPoints((prevPoints) => prevPoints + user?.pointsPerSecond);
+                if(user?.pointsPerSecond != 0) { 
+                    const response = await fetch("/api/private-game/add-points-per-second", { 
+                        method: "PATCH", 
+                        mode: "cors", 
+                        headers: { 
+                            "Content-Type": "application/json"
+                        }
+                    }); 
+    
+                    if(response.ok) setPoints((prevPoints) => prevPoints + user?.pointsPerSecond);
+                }
             } catch(err) { 
                 console.log(err); 
             }
@@ -65,9 +68,8 @@ const GameState = ({ currentUser }) => {
             if (points >= upgradeClickcost) { // Spend PRICE_CONSTANT points for an upgrade
                 setPoints(points - upgradeClickcost);
                 setPointsPerClick(pointsPerClick => pointsPerClick + 1); // Increase points per clicks
-                setUpgradeClickCost(Math.round(upgradeClickcost * 1.45));
 
-                await fetch("/api/private-game/update-clicker", { 
+                const response = await fetch("/api/private-game/update-clicker", { 
                     method: "PATCH", 
                     mode: "cors", 
                     headers: { 
@@ -75,6 +77,8 @@ const GameState = ({ currentUser }) => {
                     }, 
                     body: JSON.stringify({ price: upgradeClickcost })
                 }); 
+
+                if(response.ok) setUpgradeClickCost(response.upgradeClickCost);
             } else { 
                 console.log("ERROR -> message error to appear on screen."); 
             }
