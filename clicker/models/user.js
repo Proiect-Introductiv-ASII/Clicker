@@ -51,7 +51,7 @@ const UserSchema = new Schema({
         type: Number, 
         required: true, 
         default: 0, 
-    },  
+    },      
     clickLevel: { 
         type: Number, 
         required: true, 

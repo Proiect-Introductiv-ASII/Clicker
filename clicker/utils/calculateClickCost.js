@@ -1,5 +1,5 @@
 export default function calculateClickCost (clickLevel, upgradeClickCost) { 
-    console.log(upgradeClickCost); 
+    console.log(upgradeClickCost);  
     if(clickLevel >= 20) upgradeClickCost *= 4;
     else if(clickLevel >= 10) upgradeClickCost *= 2;  
     else 
