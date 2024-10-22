@@ -67,7 +67,7 @@ const About = () => {
           <p>
             This project was created as part of an ongoing learning journey into
             game development. If you have any suggestions, feel free to reach
-            out via email.
+            out via email: tionix1234@gmail.com.
           </p>
         </section>
       </div>
