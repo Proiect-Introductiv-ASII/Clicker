@@ -16,7 +16,7 @@ const UserInfo = ({ currentUser, currentLeaderBoard }) => {
     }
 
     return -1; 
-  }, [ leaderboard ]); 
+  }, [ leaderboard, user?._id ]); 
 
   return (
     <div className="user-info-page">

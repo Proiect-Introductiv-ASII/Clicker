@@ -20,7 +20,7 @@ const GameState = ({ currentUser }) => {
 
     useEffect( () => { 
         setPoints(user?.points); 
-    }, [ router ]); 
+    }, [ router, user?.points ]); 
   
     const handleClick = async () => { 
         try { 
@@ -69,7 +69,7 @@ const GameState = ({ currentUser }) => {
         handleInscreasePointsPerSecond(); 
       }, 1000);
       return () => clearInterval(interval);
-    }, [pointsPerSecond]);
+    }, [pointsPerSecond, points, user?.pointsPerSecond]);
   
     const handleUpgradeClick = async () => {
         try { 

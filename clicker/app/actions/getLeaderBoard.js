@@ -19,5 +19,6 @@ export const getLeaderBoard = async () => {
     } catch(err) { 
         console.log(err); 
         return null; 
+        
     }
 }
