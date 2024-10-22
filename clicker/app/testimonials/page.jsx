@@ -10,19 +10,7 @@ const Testimonials = async () => {
     <div>
       <Navbar />
       <div className="testimonials-page">
-        <TestimonialForm />
-        <div className="testimonials-list">
-          {latestTestimonials && latestTestimonials.length > 0 ? (
-            latestTestimonials.map((testimonial, index) => (
-              <div key={index} className="testimonial-item form-style">
-                <p className="testimonial-text">{testimonial.text}</p>
-                <p className="testimonial-rating">Rating: {testimonial.rating}</p>
-              </div>
-            ))
-          ) : (
-            <p>No testimonials available.</p>
-          )}
-        </div>
+        <TestimonialForm testimonials = { JSON.stringify(latestTestimonials) } />
       </div>
     </div>
   );

@@ -1,12 +1,14 @@
 "use client"
 import { useState } from "react";
 
-const TestimonialForm = () => {
+const TestimonialForm = ({ testimonials }) => {
+    const latestTestimonials = JSON.parse(testimonials); 
     const [testimonialText, setTestimonialText] = useState("");
     const [rating, setRating] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    
+    const [ testimonialLoad, setTestimonialLoad ] = useState({}); 
+     
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -35,6 +37,13 @@ const TestimonialForm = () => {
                 throw new Error("Error submitting testimonial");
             }
 
+            if(response.ok) { 
+                setTestimonialLoad({ 
+                    text: testimonialText, 
+                    rating
+                }); 
+            }
+
             setTestimonialText("");
             setRating(0);
         } catch (err) {
@@ -45,7 +54,8 @@ const TestimonialForm = () => {
     };
 
     return (
-        <div className="testimonial-form">
+        <>
+                <div className="testimonial-form">
             <h2>Submit Your Testimonial</h2>
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
@@ -68,7 +78,27 @@ const TestimonialForm = () => {
                     {loading ? "Posting..." : "Post"}
                 </button>
             </form>
-        </div>
+            </div>
+                <div className="testimonials-list">
+                {latestTestimonials && latestTestimonials.length > 0 ? (
+                  latestTestimonials.map((testimonial, index) => (
+                    <div key={index} className="testimonial-item form-style">
+                      <p className="testimonial-text">{testimonial.text}</p>
+                      <p className="testimonial-rating">Rating: {testimonial.rating}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p>No testimonials available.</p>
+                )}
+                { 
+                    testimonialLoad?.text && 
+                    <div key={testimonialLoad.text} className="testimonial-item form-style">
+                        <p className="testimonial-text">{testimonialLoad.text}</p>
+                        <p className="testimonial-rating">Rating: {testimonialLoad.rating}</p>
+                    </div>
+                }
+              </div>
+        </>
     );
 };
 
