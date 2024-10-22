@@ -18,7 +18,9 @@ const GameState = ({ currentUser }) => {
     const [floatPoints, setFloatPoints] = useState([]);
     const [ level, setLevel ] = useState(user?.level); 
 
-    useEffect( () => { router.refresh() }, [])
+    useEffect( () => { 
+        setPoints(user?.points); 
+    }, [ router ]); 
   
     const handleClick = async () => { 
         try { 

@@ -1,16 +1,15 @@
-import Link from "next/link";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(authOptions); 
+  if(session) redirect("/dashboard"); 
+  else redirect("/login"); 
+
   return (
     <div className="home-container">
-      <div className="home-links">
-        <Link href="login">
-          <p className="link-button">Login</p>
-        </Link>
-        <Link href="register">
-          <p className="link-button">Register</p>
-        </Link>
-      </div>
+
     </div>
   );
 }
