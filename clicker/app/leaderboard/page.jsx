@@ -10,6 +10,8 @@ const LeaderBoardPage = async () => {
         />     
     </>
   )
-}
+};
+
+export const dynamic = 'force-dynamic';
 
 export default LeaderBoardPage
