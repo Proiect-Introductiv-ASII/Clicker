@@ -8,8 +8,6 @@ const UserInfo = ({ currentUser, currentLeaderBoard }) => {
   console.log(currentLeaderBoard); 
   const leaderboard = JSON.parse(currentLeaderBoard); 
 
-  console.log(leaderboard); 
-
   const placeInLeaderBoard = useMemo( () => {
     for(let i = 0; i < leaderboard?.length; i++) { 
         if(leaderboard[i]._id == user?._id) return i + 1; 
