@@ -151,8 +151,8 @@ const GameState = ({ currentUser }) => {
         <p></p>
         <button onClick={handleUpgradeAutoClick}>Upgrade Auto-Click (Cost: { upgradePointsPerSecondCost } Points)</button>
 
-        <p> Level up cost: { LEVEL_UP_COST } </p>
-        <p> Your Level: { level } </p>
+        <h2> Level up cost: { LEVEL_UP_COST } </h2>
+        <h2> Your Level: { level } </h2>
         <button onClick = { handleLevelUp }> Level Up </button>
         </div>
     </>
