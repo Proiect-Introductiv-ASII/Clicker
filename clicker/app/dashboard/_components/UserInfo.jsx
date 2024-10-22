@@ -3,9 +3,9 @@
 import { signOut } from 'next-auth/react';
 import { useMemo } from 'react';
 
-const UserInfo = ({ currentUser, currentLeaderBoard }) => {
+const UserInfo = ({ currentUser, leaderboard }) => {
   const user = JSON.parse(currentUser);
-  const leaderboard = JSON.parse(currentLeaderBoard); 
+  const leaderboard = JSON.parse(leaderboard); 
 
   const placeInLeaderBoard = useMemo( () => {
     for(let i = 0; i < leaderboard.length; i++) { 

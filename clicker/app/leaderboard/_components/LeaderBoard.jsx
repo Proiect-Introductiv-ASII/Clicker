@@ -4,14 +4,14 @@ import { useState } from "react";
 import Navbar from "@/app/components/Navbar";
 
 const LeaderBoard = ({ leaderboard }) => {
-    const currentLeaderBoard = JSON.parse(leaderboard); 
+    const leaderboard = JSON.parse(leaderboard); 
   return (
     <>
     <Navbar />
         <div className="leaderboard-container">
         
         <h1 className="heading">Leaderboard</h1>
-        {currentLeaderBoard.length > 0 ? (
+        {leaderboard.length > 0 ? (
             <table className="leaderboard-table">
             <thead>
                 <tr>
@@ -21,7 +21,7 @@ const LeaderBoard = ({ leaderboard }) => {
                 </tr>
             </thead>
             <tbody>
-                {currentLeaderBoard.map((player, index) => (
+                {leaderboard.map((player, index) => (
                 <tr key={player._id}>
                     <td> { index } </td>
                     <td> { player.name } </td>

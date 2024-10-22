@@ -11,7 +11,7 @@ const Dashboard = async () => {
         <Navbar/>
         <UserInfo
           currentUser = { JSON.stringify(currentUser) }
-          currentLeaderBoard = { JSON.stringify(currentLeaderBoard)}  
+          currentLeaderBoard = { JSON.stringify(leaderboard)}  
         /> 
     </div>
   )
