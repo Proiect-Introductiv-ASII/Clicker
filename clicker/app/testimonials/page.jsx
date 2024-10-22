@@ -4,7 +4,7 @@ import TestimonialForm from "./_components/TestimonialForm";
 
 const Testimonials = async () => {
   const testimonials = await getTestimonials();
-  const latestTestimonials = testimonials.slice(-4);
+  const latestTestimonials = testimonials.slice(-6);
   
   return (
     <div>
