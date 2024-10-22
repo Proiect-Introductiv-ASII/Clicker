@@ -1,10 +1,9 @@
 "use client"
 
-import { useState } from "react";
 import Navbar from "@/app/components/Navbar";
 
-const LeaderBoard = ({ leaderboard }) => {
-    const leaderboard = JSON.parse(leaderboard); 
+const LeaderBoard = ({ currentLeaderBoard }) => {
+    const leaderboard = JSON.parse(currentLeaderBoard); 
   return (
     <>
     <Navbar />
